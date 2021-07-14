@@ -72,6 +72,11 @@ module.exports = ({ game, destination, selectedPiece }) => {
 };
 
 
+/**
+ * this function check if there is available jump and it match destination and selectedPiece
+ * return true if there is available jump and selectedPiece make that jump or if no available jump
+ * return false if there is available jump and selectedPiece not make that jump
+ */
 const takeAvailableJumpIfExist = (game, destination, selectedPiece) => {
 
   const {turn, board} = game;
