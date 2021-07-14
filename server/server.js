@@ -5,9 +5,8 @@ const io = require('socket.io')(http, {
   transports: ['websocket'],
 });
 
-const onDisconnectFactory = require('./handlers/onDisconnectFactory');
 const movePieceFactory = require('./handlers/movePieceFactory');
-const leaveGameFactory = require('./handlers/leaveGameFactory');
+const leaveGameOrDisconnectFactory = require('./handlers/leaveGameOrDisconnectFactory');
 const createGameFactory = require('./handlers/createGameFactory');
 const joinGameFactory = require('./handlers/joinGameFactory');
 
@@ -17,13 +16,12 @@ io.on('connection', (socket) => {
   sendGames(socket);
 
   socket.on(
-    'disconnect',
-    onDisconnectFactory({ io, socket })
+    'disconnect', leaveGameOrDisconnectFactory({ io, socket })
   );
 
   socket.on('move-piece', movePieceFactory({ io, socket }));
 
-  socket.on('leave-game', leaveGameFactory({ socket, io }));
+  socket.on('leave-game', leaveGameOrDisconnectFactory({ socket, io }));
 
   socket.on(
     'create-game',
