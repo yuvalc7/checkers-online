@@ -32,6 +32,5 @@ Communication emit/on:
                   - cd server  
                      - npm start       
 ### open second windows in browser (`http://localhost:3000/`)  
-### one browser create game    
-### second browser join to game  
+### create game in one browser and join in second browser     
 ### play !!
